@@ -1,0 +1,23 @@
+{
+  "name": "hostlify",
+  "version": "0.0.1",
+  "main": "app.js",
+  "repository": "git@github.com:EthWorks/hostlify.git",
+  "author": "mateusz <mistrzumati@spoko.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^17.0.18",
+    "fastify": "^3.27.1",
+    "fastify-file-upload": "^3.0.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./build/app.js",
+    "dev": "ts-node ./src/app.ts",
+    "clean": "rm -r build"
+  }
+}
