@@ -10,6 +10,7 @@ import { File } from './types'
 export interface UploadParams {
     id: string
 }
+
 export interface UploadRequest {
     Params: UploadParams,
     Body: {
