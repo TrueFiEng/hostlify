@@ -27,7 +27,7 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
 
     try {
         await fs.writeFile(configPath, serverConfig)
-        await fs.mkdir(repositoryPath, { recursive: true })
+        await createFilePathDirectoriesIfNecessary(repositoryPath)
 
         for (const [key, file] of Object.entries(request.body)) {
             const filePath = `${repositoryPath}/${key}`
