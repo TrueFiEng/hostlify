@@ -1,7 +1,3 @@
-export interface UploadParams {
-    id: string
-}
-
 export interface File {
   name: string,
   data: Buffer
@@ -12,11 +8,4 @@ export interface File {
   mimetype: string,
   md5: string,
   mv: Function
-}
-
-export interface UploadRequest {
-    Params: UploadParams,
-    Body: {
-        [file: string]: File
-    }
 }

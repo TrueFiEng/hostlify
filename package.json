@@ -7,11 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.18",
-    "child-process": "^1.0.2",
     "fastify": "^3.27.1",
-    "fastify-file-upload": "^3.0.1",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "fastify-file-upload": "^3.0.1"
   },
   "devDependencies": {
     "ts-node": "^10.5.0",
@@ -21,6 +18,6 @@
     "build": "tsc",
     "start": "node ./build/app.js",
     "dev": "ts-node ./src/app.ts",
-    "clean": "rm -r bin"
+    "clean": "rm -r build"
   }
 }

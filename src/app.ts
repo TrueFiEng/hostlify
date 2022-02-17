@@ -3,9 +3,19 @@ import fileUpload from 'fastify-file-upload'
 import fs from 'fs/promises'
 import { existsSync } from 'fs'
 import { exec } from 'child_process'
-import { UploadRequest } from './types'
 import { PORT, SERVER_TEMPLATE } from './constants'
 import path from 'path'
+import { File } from './types'
+
+export interface UploadParams {
+    id: string
+}
+export interface UploadRequest {
+    Params: UploadParams,
+    Body: {
+        [file: string]: File
+    }
+}
 
 const server = fastify()
 server.register(fileUpload)
