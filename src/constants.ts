@@ -1,4 +1,4 @@
-export const PORT = 8080
+export const PORT = 3000
 
 export const SERVER_TEMPLATE = `server {
     listen       80;
@@ -10,7 +10,7 @@ export const SERVER_TEMPLATE = `server {
         index  index.html index.htm;
     }
 
-    error_page   500 502 503 504  /50x.html;
+    error_page 404 500 502 503 504  /50x.html;
     location = /50x.html {
         root   /usr/share/nginx/html;
     }

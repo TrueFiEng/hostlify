@@ -10,7 +10,8 @@
     "child-process": "^1.0.2",
     "fastify": "^3.27.1",
     "fastify-file-upload": "^3.0.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "ts-node": "^10.5.0",
