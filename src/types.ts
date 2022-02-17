@@ -11,7 +11,7 @@ export interface File {
   truncated: boolean,
   mimetype: string,
   md5: string,
-  mv: Function // TODO: get the signature from 'fastify-file-upload' docs.
+  mv: Function
 }
 
 export interface UploadRequest {
