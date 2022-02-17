@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.18",
+    "child-process": "^1.0.2",
     "fastify": "^3.27.1",
     "fastify-file-upload": "^3.0.1",
     "fs": "^0.0.1-security"
