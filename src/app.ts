@@ -3,7 +3,7 @@ import fileUpload from 'fastify-file-upload'
 import fs from 'fs/promises'
 import { existsSync } from 'fs'
 import { exec } from 'child_process'
-import { PORT, SERVER_TEMPLATE } from './constants'
+import { PORT, SERVER_TEMPLATE, HOST } from './constants';
 import path from 'path'
 import { File } from './types'
 
@@ -32,8 +32,8 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
 
     const { id } = request.params
     console.log(id)
-    const repositoryPath = `./repository/${id}`
-    const configPath = `./config/serverConfigs/${id}.conf`
+    const repositoryPath = `./usr/share/nginx/html/${id}`
+    const configPath = `./etc/nginx/serverConfigs/${id}.conf`
     const serverConfig = SERVER_TEMPLATE.replace(/{{serverName}}/g, id)
 
     try {
@@ -46,7 +46,7 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
             await createFilePathDirectoriesIfNecessary(filePath)
             await fs.writeFile(filePath, file.data)
         }
-        exec('docker compose exec server1 nginx -s reload')
+        exec('nginx -s reload')
     }
     catch (err) {
         console.error(err)
@@ -57,7 +57,7 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
     return reply.status(201).send({url})
 })
 
-server.listen(PORT, (err, address) => {
+server.listen(PORT, HOST, (err, address) => {
   if (err) {
     console.error(err)
     process.exit(1)

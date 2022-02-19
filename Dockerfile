@@ -1,11 +1,21 @@
-FROM node:16 as base
+FROM node:16.13.0-alpine3.12
+ENV NODE_ENV=production
 
-WORKDIR /usr/src/app
-COPY package.json ./
-COPY tsconfig.json ./
+COPY src src
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+COPY tsconfig.json tsconfig.json
+
 RUN yarn
-COPY ./src ./src
 RUN yarn build
 
-EXPOSE 3000
-CMD yarn start
+RUN apk update
+RUN apk add nginx
+
+COPY config/ /etc/nginx/
+COPY repository/ /usr/share/nginx/html
+
+EXPOSE 80
+
+COPY scripts/run.sh run.sh
+CMD sh run.sh
