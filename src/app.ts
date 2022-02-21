@@ -3,9 +3,12 @@ import fileUpload from 'fastify-file-upload'
 import fs from 'fs/promises'
 import { existsSync } from 'fs'
 import { exec } from 'child_process'
-import { PORT, SERVER_TEMPLATE, HOST } from './constants';
+import { PORT, SERVER_TEMPLATE, HOST, NGINX_TEMPLATE } from './constants';
 import path from 'path'
 import { File } from './types'
+
+const domain = process.env.DOMAIN_NAME
+const configsPath = `./etc/nginx/serverConfigs`
 
 export interface UploadParams {
     id: string
@@ -33,8 +36,11 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
     const { id } = request.params
     console.log(id)
     const repositoryPath = `./usr/share/nginx/html/${id}`
-    const configPath = `./etc/nginx/serverConfigs/${id}.conf`
-    const serverConfig = SERVER_TEMPLATE.replace(/{{serverName}}/g, id)
+    const configPath = `${configsPath}/${id}.conf`
+    if(!domain) {
+        return reply.status(500).send('Domain variable is not set!')
+    }
+    const serverConfig = SERVER_TEMPLATE.replace(/{{serverName}}/g, id).replace('{{domain}}', domain)
 
     try {
         await fs.writeFile(configPath, serverConfig)
@@ -53,14 +59,17 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
         return reply.status(500).send(err)
     }
 
-    const url = `${id}.lvh.me`
+    const url = `${id}.${domain}`
     return reply.status(201).send({url})
 })
 
-server.listen(PORT, HOST, (err, address) => {
-  if (err) {
+server.listen(PORT, HOST, async(err, address) => {
+  if (err || !domain) {
     console.error(err)
     process.exit(1)
   }
+  await createFilePathDirectoriesIfNecessary(configsPath)
+  const configFileContent = NGINX_TEMPLATE.replace('{{domain}}', domain)
+  await fs.writeFile(`${configsPath}`, configFileContent)
   console.log(`Server listening at ${address}`)
 })
