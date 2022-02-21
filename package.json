@@ -19,5 +19,8 @@
     "start": "node ./build/app.js",
     "dev": "ts-node ./src/app.ts",
     "clean": "rm -r build"
+  },
+  "publishConfig": {
+    "@mj426382:registry": "https://npm.pkg.github.com"
   }
 }

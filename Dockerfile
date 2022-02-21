@@ -1,4 +1,7 @@
 FROM node:16.13.0-alpine3.12
+
+LABEL org.opencontainers.image.source https://github.com/ethworks/hostlify
+
 ENV NODE_ENV=production
 
 COPY src src
