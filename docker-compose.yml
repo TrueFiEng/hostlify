@@ -1,22 +1,9 @@
 version: '3.7'
 
 services:
-  server1:
-    image: nginx
-    volumes:
-      - ./repository:/usr/share/nginx/html:ro
-      - ./config:/etc/nginx:ro
+  hostlify:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 80:80
-
-  # ts-node-docker:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: base
-  #   volumes:
-  #     - ./src:/home/node/app/src
-  #   container_name: ts-node-docker
-  #   ports:
-  #     - 3000:3000
-  #   command: yarn dev

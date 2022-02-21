@@ -1,4 +1,5 @@
-export const PORT = 3000
+export const PORT = 8080
+export const HOST = '0.0.0.0'
 
 export const SERVER_TEMPLATE = `server {
     listen       80;
