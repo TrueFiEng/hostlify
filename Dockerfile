@@ -15,9 +15,6 @@ RUN yarn build
 RUN apk update
 RUN apk add nginx
 
-COPY config/ /etc/nginx/
-COPY repository/ /usr/share/nginx/html
-
 EXPOSE 80
 
 COPY scripts/run.sh run.sh
