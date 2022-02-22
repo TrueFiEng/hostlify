@@ -8,7 +8,7 @@ import path from 'path'
 import { File } from './types'
 
 const domain = process.env.DOMAIN_NAME
-const configsPath = `./etc/nginx/serverConfigs`
+const configPath= `./etc/nginx`
 
 export interface UploadParams {
     id: string
@@ -36,14 +36,15 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
     const { id } = request.params
     console.log(id)
     const repositoryPath = `./usr/share/nginx/html/${id}`
-    const configPath = `${configsPath}/${id}.conf`
+    const serverConfigPath = `${configPath}/serverConfigs/${id}.conf`
     if(!domain) {
         return reply.status(500).send('Domain variable is not set!')
     }
     const serverConfig = SERVER_TEMPLATE.replace(/{{serverName}}/g, id).replace('{{domain}}', domain)
 
     try {
-        await fs.writeFile(configPath, serverConfig)
+        await createFilePathDirectoriesIfNecessary(serverConfigPath)
+        await fs.writeFile(serverConfigPath, serverConfig)
         await createFilePathDirectoriesIfNecessary(repositoryPath)
 
         for (const [key, file] of Object.entries(request.body)) {
@@ -64,12 +65,21 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
 })
 
 server.listen(PORT, HOST, async(err, address) => {
-  if (err || !domain) {
+  if (err) {
     console.error(err)
     process.exit(1)
   }
-  await createFilePathDirectoriesIfNecessary(configsPath)
-  const configFileContent = NGINX_TEMPLATE.replace('{{domain}}', domain)
-  await fs.writeFile(`${configsPath}`, configFileContent)
+  await prepareServer()
   console.log(`Server listening at ${address}`)
 })
+
+async function prepareServer() {
+    if (!domain) {
+        console.error('Domain variable is not set!')
+        process.exit(1)
+      }
+    await createFilePathDirectoriesIfNecessary(`${configPath}/serverConfigs/config`)
+    const configFileContent = NGINX_TEMPLATE.replace('{{domain}}', domain)
+    await fs.writeFile(`${configPath}/nginx.conf`, configFileContent)
+    exec('nginx -c /etc/nginx/nginx.conf')
+}

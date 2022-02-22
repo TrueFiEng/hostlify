@@ -17,5 +17,4 @@ RUN apk add nginx
 
 EXPOSE 80
 
-COPY scripts/run.sh run.sh
-CMD sh run.sh
+CMD yarn dev
