@@ -15,6 +15,6 @@ jobs:
       - run: yarn build
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v1.2
+        uses: ethworks/hostlify-publish@v1.3
         with:
           publish-dir: build
