@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./build/app.js",
-    "dev": "DOMAIN_NAME='lvh.me' ts-node ./src/app.ts",
+    "dev": "ts-node ./src/app.ts",
     "clean": "rm -r build"
   },
   "publishConfig": {

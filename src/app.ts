@@ -77,7 +77,8 @@ async function prepareServer() {
     if (!domain) {
         console.error('Domain variable is not set!')
         process.exit(1)
-      }
+    }
+    console.log(domain)
     await createFilePathDirectoriesIfNecessary(`${configPath}/serverConfigs/config`)
     const configFileContent = NGINX_TEMPLATE.replace('{{domain}}', domain)
     await fs.writeFile(`${configPath}/nginx.conf`, configFileContent)
