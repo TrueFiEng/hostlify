@@ -13,3 +13,8 @@ jobs:
           node-version: 16
       - run: yarn
       - run: yarn build
+      - name: Deploy
+        id: truefipreview
+        uses: ethworks/hostlify-publish@v1.1
+        with:
+          publish-dir: build
