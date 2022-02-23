@@ -3,6 +3,7 @@ FROM node:16.13.0-alpine3.12
 LABEL org.opencontainers.image.source https://github.com/ethworks/hostlify
 
 ENV NODE_ENV=production
+ENV domain=''
 
 COPY src src
 COPY package.json package.json
@@ -15,10 +16,6 @@ RUN yarn build
 RUN apk update
 RUN apk add nginx
 
-COPY config/ /etc/nginx/
-COPY repository/ /usr/share/nginx/html
-
 EXPOSE 80
 
-COPY scripts/run.sh run.sh
-CMD sh run.sh
+CMD DOMAIN_NAME=$domain yarn dev
