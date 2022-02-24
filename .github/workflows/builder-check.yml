@@ -15,7 +15,8 @@ jobs:
       - run: yarn build
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v1.7
+        uses: ethworks/hostlify-publish@v1.8
         with:
           files: ./frontend/build
           id: ${{ github.COMMIT_SHA }}
+          server-url: truefipreview.io
