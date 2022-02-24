@@ -17,6 +17,6 @@ jobs:
         id: truefipreview
         uses: ethworks/hostlify-publish@v1.8
         with:
-          files: ./frontend/build
+          files: ./build
           id: ${{ github.COMMIT_SHA }}
           server-url: truefipreview.io
