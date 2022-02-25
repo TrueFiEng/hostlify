@@ -24,6 +24,3 @@ jobs:
           repo: hostlify
           access-token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: 8
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
