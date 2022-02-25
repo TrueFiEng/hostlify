@@ -15,8 +15,15 @@ jobs:
       - run: yarn build
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v1
+        uses: ethworks/hostlify-publish@v1.1.1
         with:
           files: ./build
           id: ${{ github.COMMIT_SHA }}
           server-url: truefipreview.io
+          owner: EthWorks
+          repo: hostlify
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          pull_number: 8
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
