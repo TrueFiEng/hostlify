@@ -24,3 +24,5 @@ jobs:
           repo: hostlify
           access-token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: 8
+
+          
