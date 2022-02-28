@@ -17,7 +17,7 @@ jobs:
         id: truefipreview
         uses: ethworks/hostlify-publish@v3.2
         with:
-          files: ./build
+          files: ./example
           server-url: truefipreview.io
           owner: EthWorks
           repo: hostlify
