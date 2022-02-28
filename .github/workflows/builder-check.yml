@@ -15,11 +15,10 @@ jobs:
       - run: yarn build
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v1.1.18
+        uses: ethworks/hostlify-publish@v3
         with:
           files: ./build
           server-url: truefipreview.io
           owner: EthWorks
           repo: hostlify
           access-token: ${{ secrets.GITHUB_TOKEN }}
-          pull_number: 8
