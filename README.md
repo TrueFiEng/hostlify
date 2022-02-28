@@ -3,8 +3,11 @@
 Self-hosted site preview service.
 
 > 🏢 Self-hosted.
+> 
 > 👌 Easy to set-up.
+> 
 > 🚀 Blazing fast deploy.
+> 
 > 🔗 Integrates into your existing CI pipeline.
 
 
