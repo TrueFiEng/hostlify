@@ -15,7 +15,7 @@ jobs:
       - run: yarn build
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v1.1.6
+        uses: ethworks/hostlify-publish@v1.1.7
         with:
           files: ./build
           id: ${{ github.COMMIT_SHA }}
@@ -24,4 +24,3 @@ jobs:
           repo: hostlify
           access-token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: 8
-
