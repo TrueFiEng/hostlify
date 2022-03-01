@@ -21,7 +21,9 @@ export interface UploadRequest {
     }
 }
 
-const server = fastify()
+const server = fastify({
+    bodyLimit: 10000000000,
+})
 server.register(fileUpload)
 
 async function createFilePathDirectoriesIfNecessary(filePath: string) {
