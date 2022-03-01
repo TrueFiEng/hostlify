@@ -1,6 +1,7 @@
 export const PORT = 8080
 export const HOST = '0.0.0.0'
 
+// TODO: Extract to ./nginx.ts
 export const SERVER_TEMPLATE = `server {
     listen       80;
     listen  [::]:80;
@@ -18,6 +19,7 @@ export const SERVER_TEMPLATE = `server {
 }
 `
 
+// TODO: Extract to ./nginx.ts
 export const NGINX_TEMPLATE = `user  nginx;
 worker_processes  auto;
 
