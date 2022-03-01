@@ -8,7 +8,8 @@ export const SERVER_TEMPLATE = `server {
 
     location / {
         root   /usr/share/nginx/html/{{serverName}};
-        index  index.html index.htm;
+        try_files $uri $uri/ $uri.html /index.html;
+        autoindex on;
     }
 
     error_page 404 500 502 503 504  /50x.html;
@@ -31,8 +32,9 @@ events {
 
 
 http {
-    client_max_body_size 1000M;
     default_type  application/octet-stream;
+    include /etc/nginx/mime.types;
+    client_max_body_size 100000M;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
@@ -45,7 +47,7 @@ http {
     keepalive_timeout  65;
 
     server {
-        client_max_body_size 1000M;
+        client_max_body_size 100000M;
         listen 80 ;
         listen [::]:80;
         
