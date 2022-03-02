@@ -20,3 +20,4 @@ jobs:
           files: ./example
           server-url: truefipreview.io
           access-token: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn lint
