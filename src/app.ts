@@ -1,9 +1,10 @@
 import fastify from 'fastify'
 import fileUpload from 'fastify-file-upload'
-import { PORT, HOST } from './constants'
-import { Files, UploadParams } from './types'
-import { reloadNginxConfig, updateApiConfig, updatePreviewConfig, writePreviewContent } from './nginx'
+
 import { getConfig } from './config'
+import { PORT, HOST } from './constants'
+import { reloadNginxConfig, updateApiConfig, updatePreviewConfig, writePreviewContent } from './nginx'
+import { Files, UploadParams } from './types'
 
 const server = fastify({
     bodyLimit: 100_000_000_000, // ~100GB

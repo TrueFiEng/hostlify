@@ -1,17 +1,18 @@
-import fs from 'fs/promises'
-import path from 'path'
 
 import { execSync } from 'child_process'
 import { existsSync } from 'fs'
+import fs from 'fs/promises'
+import path from 'path'
+
 import { getConfig } from './config'
-import { Files } from './types'
 import { NGINX_TEMPLATE, SERVER_TEMPLATE } from './nginxConfigTemplates'
+import { Files } from './types'
 
 const REPOSITORY_PATH = '/usr/share/nginx/html'
 const NIGINX_CONFIG_PATH= `/etc/nginx`
 
 async function createFilePathDirectoriesIfNecessary(filePath: string) {
-    const directoriesPath = path.dirname(filePath);
+    const directoriesPath = path.dirname(filePath)
     if(!existsSync(directoriesPath)) {
         await fs.mkdir(directoriesPath, {recursive: true})
     }
