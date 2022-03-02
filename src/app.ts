@@ -22,7 +22,7 @@ export interface UploadRequest {
 }
 
 const server = fastify({
-    bodyLimit: 100000000000,
+    bodyLimit: 100_000_000_000 // ~100GB
 })
 server.register(fileUpload)
 
