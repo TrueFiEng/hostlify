@@ -33,7 +33,7 @@ function runServer() {
     server.listen(PORT, HOST, async(err, address) => {
         if (err) {
             throw new Error(err.message)
-    }
+        }
     console.log(`Server listening at ${address}`)
     })
 }
@@ -48,6 +48,4 @@ async function main() {
     }
 }
 
-(async () => {
-    await main()
-})()
+main()

@@ -1,5 +1,5 @@
 export interface Config {
-    domain: string | undefined
+    domain?: string
 }
 
 export function getConfig(): Config {
