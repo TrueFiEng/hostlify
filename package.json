@@ -23,7 +23,7 @@
     "start": "node ./build/app.js",
     "dev": "ts-node ./src/app.ts",
     "clean": "rm -r build",
-    "lint": "eslint './{src,test}/**/*.{ts,tsx}' --cache",
+    "lint": "eslint './src/**/*.ts' --cache",
     "lint:fix": "yarn lint --fix"
   },
   "publishConfig": {
