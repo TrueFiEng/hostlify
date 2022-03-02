@@ -17,7 +17,6 @@
     "project": "./tsconfig.json",
     "sourceType": "module"
   },
-  "ignorePatterns": ["**/generated/*"],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
@@ -68,10 +67,5 @@
         "noUselessIndex": true
       }
     ]
-  },
-  "overrides": [
-    {
-      "files": ["src/**/*"]
-    }
-  ]
+  }
 }

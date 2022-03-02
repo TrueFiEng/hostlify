@@ -3,7 +3,7 @@ import fileUpload from 'fastify-file-upload'
 
 import { getConfig } from './config'
 import { PORT, HOST } from './constants'
-import { reloadNginxConfig, updateApiConfig, updatePreviewConfig, writePreviewContent } from './nginx'
+import { reloadNginxConfig, updatePreviewConfig, writePreviewContent } from './nginx'
 import { Files, UploadParams } from './types'
 
 const server = fastify({
@@ -29,7 +29,7 @@ server.post<UploadRequest>('/upload/:id', async (request, reply) => {
     return reply.status(201).send({url})
 })
 
-function runServer() {
+export function runServer() {
     server.listen(PORT, HOST, async(err, address) => {
         if (err) {
             throw new Error(err.message)
@@ -37,15 +37,3 @@ function runServer() {
     console.log(`Server listening at ${address}`)
     })
 }
-
-async function main() {
-    try {
-        await updateApiConfig()
-        runServer()
-    } catch(err) {
-        console.error(err)
-        process.exit(1)
-    }
-}
-
-main()

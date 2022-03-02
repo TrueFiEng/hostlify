@@ -5,11 +5,9 @@ import fs from 'fs/promises'
 import path from 'path'
 
 import { getConfig } from './config'
+import { NIGINX_CONFIG_PATH, REPOSITORY_PATH } from './fs-utils'
 import { NGINX_TEMPLATE, SERVER_TEMPLATE } from './nginxConfigTemplates'
 import { Files } from './types'
-
-const REPOSITORY_PATH = '/usr/share/nginx/html'
-const NIGINX_CONFIG_PATH= `/etc/nginx`
 
 async function createFilePathDirectoriesIfNecessary(filePath: string) {
     const directoriesPath = path.dirname(filePath)
@@ -54,10 +52,9 @@ export async function updateApiConfig() {
     await createFilePathDirectoriesIfNecessary(`${NIGINX_CONFIG_PATH}/serverConfigs/config`)
     const configFileContent = NGINX_TEMPLATE.replace('{{domain}}', domain)
     await fs.writeFile(`${NIGINX_CONFIG_PATH}/nginx.conf`, configFileContent)
-    runNginx()
 }
 
-function runNginx() {
+export function runNginx() {
     execSync('nginx -c /etc/nginx/nginx.conf')
 }
 
