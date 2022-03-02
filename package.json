@@ -24,8 +24,5 @@
     "dev": "ts-node ./src/main.ts",
     "lint": "eslint './src/**/*.ts' --cache",
     "lint:fix": "yarn lint --fix"
-  },
-  "publishConfig": {
-    "@mj426382:registry": "https://npm.pkg.github.com"
   }
 }
