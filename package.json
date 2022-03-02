@@ -22,7 +22,6 @@
     "build": "tsc",
     "start": "node ./build/main.js",
     "dev": "ts-node ./src/main.ts",
-    "clean": "rm -r build",
     "lint": "eslint './src/**/*.ts' --cache",
     "lint:fix": "yarn lint --fix"
   },
