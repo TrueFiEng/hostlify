@@ -13,6 +13,7 @@ jobs:
           node-version: 16
       - run: yarn
       - run: yarn build
+      - run: yarn lint
       - name: Deploy
         id: truefipreview
         uses: ethworks/hostlify-publish@v3.25
@@ -20,4 +21,3 @@ jobs:
           files: ./example
           server-url: truefipreview.io
           access-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: yarn lint
