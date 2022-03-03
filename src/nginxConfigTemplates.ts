@@ -7,6 +7,8 @@ export const SERVER_TEMPLATE = `server {
         root   /usr/share/nginx/html/{{serverName}};        
         try_files $uri $uri/ $uri.html /index.html;
         autoindex on;
+        application/font-woff           woff; 
+        application/x-font-woff         woff;
     }
 
     error_page 404 500 502 503 504  /50x.html;
@@ -22,16 +24,15 @@ worker_processes  auto;
 error_log  /var/log/nginx/error.log notice;
 pid        /var/run/nginx.pid;
 
-
 events {
     worker_connections  1024;
 }
 
-
 http {
-    default_type  application/octet-stream;    
+    default_type  application/octet-stream;
     include /etc/nginx/mime.types;
     client_max_body_size 100000M;
+    charset utf-8;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
