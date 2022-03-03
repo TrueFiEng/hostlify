@@ -2,13 +2,13 @@ export const SERVER_TEMPLATE = `server {
     listen       80;
     listen  [::]:80;
     server_name  {{serverName}}.{{domain}};
+    application/font-woff           woff; 
+    application/x-font-woff         woff;
 
     location / {
         root   /usr/share/nginx/html/{{serverName}};        
         try_files $uri $uri/ $uri.html /index.html;
         autoindex on;
-        application/font-woff           woff; 
-        application/x-font-woff         woff;
     }
 
     error_page 404 500 502 503 504  /50x.html;
