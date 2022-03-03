@@ -2,8 +2,6 @@ export const SERVER_TEMPLATE = `server {
     listen       80;
     listen  [::]:80;
     server_name  {{serverName}}.{{domain}};
-    application/font-woff           woff; 
-    application/x-font-woff         woff;
 
     location / {
         root   /usr/share/nginx/html/{{serverName}};        
@@ -31,6 +29,8 @@ events {
 http {
     default_type  application/octet-stream;
     include /etc/nginx/mime.types;
+    application/font-woff woff; 
+    application/x-font-woff woff;
     client_max_body_size 100000M;
     charset utf-8;
 
