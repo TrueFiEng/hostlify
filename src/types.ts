@@ -14,6 +14,6 @@ export interface Files {
   [file: string]: File
 }
 
-export interface UploadParams {
+export interface IdParams {
   id: string
 }

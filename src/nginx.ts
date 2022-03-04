@@ -1,10 +1,12 @@
 import { execSync } from 'child_process'
+import { existsSync } from 'fs'
 import fs from 'fs/promises'
 
 import { getConfig } from './config'
 import { createFilePathDirectoriesIfNecessary } from './fs-utils'
 import { NGINX_TEMPLATE, SERVER_TEMPLATE } from './nginxConfigTemplates'
 import { Files } from './types'
+
 
 const REPOSITORY_PATH = '/usr/share/nginx/html'
 const NIGINX_CONFIG_PATH= `/etc/nginx`
@@ -48,6 +50,15 @@ export async function updateApiConfig() {
 export async function listPreviewServers() {
     const directoryContent = await fs.readdir(REPOSITORY_PATH)
     return directoryContent
+}
+
+export async function deletePreviewServer(id: string) {
+    const directoryPath = `${REPOSITORY_PATH}/${id}`
+    if(!existsSync(directoryPath)) {
+        return false
+    }
+    await fs.rmdir(directoryPath, { recursive: true })
+    return true
 }
 
 export function runNginx() {
