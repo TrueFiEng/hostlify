@@ -22,16 +22,15 @@ worker_processes  auto;
 error_log  /var/log/nginx/error.log notice;
 pid        /var/run/nginx.pid;
 
-
 events {
     worker_connections  1024;
 }
 
-
 http {
-    default_type  application/octet-stream;    
+    default_type  application/octet-stream;
     include /etc/nginx/mime.types;
     client_max_body_size 100000M;
+    charset utf-8;
 
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
