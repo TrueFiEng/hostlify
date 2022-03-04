@@ -33,7 +33,7 @@ export async function writePreviewContent(id: string, files: Files) {
         const filePath = `${repositoryPath}/${key}`
         console.log(key)
         await createFilePathDirectoriesIfNecessary(filePath)
-        await fs.writeFile(filePath, file.data)
+        await fs.writeFile(filePath, file.data, 'binary')
     }
 }
 
