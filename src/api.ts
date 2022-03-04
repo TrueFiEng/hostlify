@@ -49,7 +49,7 @@ server.delete<DeleteDirectoryRequest>('/:id', async (_request, reply) => {
 
     const deleteStatus = await deletePreviewServer(id)
     return deleteStatus 
-    ? reply.code(204).send(`Server preview was deleted successfully`) 
+    ? reply.code(200).send(`Server preview was deleted successfully`) 
     : reply.code(404).send(`Server preview with that name doesn't exist`)
 })
 
