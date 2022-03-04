@@ -29,8 +29,6 @@ events {
 http {
     default_type  application/octet-stream;
     include /etc/nginx/mime.types;
-    application/font-woff woff; 
-    application/x-font-woff woff;
     client_max_body_size 100000M;
     charset utf-8;
 
