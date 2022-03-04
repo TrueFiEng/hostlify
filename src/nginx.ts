@@ -21,8 +21,6 @@ export async function updatePreviewConfig(id: string) {
 
     await createFilePathDirectoriesIfNecessary(serverConfigPath)
     await fs.writeFile(serverConfigPath, serverConfig)
-
-    reloadNginxConfig()
 }
 
 export async function writePreviewContent(id: string, files: Files) {
@@ -48,10 +46,15 @@ export async function updateApiConfig() {
     await fs.writeFile(`${NIGINX_CONFIG_PATH}/nginx.conf`, configFileContent)
 }
 
+export async function listPreviewServers() {
+    const directoryContent = await fs.readdir(REPOSITORY_PATH)
+    return directoryContent
+}
+
 export function runNginx() {
     execSync('nginx -c /etc/nginx/nginx.conf')
 }
 
-export function reloadNginxConfig() {
+export function reloadNginx() {
     execSync('nginx -s reload')
 }
