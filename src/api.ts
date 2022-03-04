@@ -29,7 +29,7 @@ server.post<UploadRequest>('/upload/:id', async (_request, reply) => {
     return reply.status(201).send({url})
 })
 
-server.get('list', async (_request, reply) => {
+server.get('/list', async (_request, reply) => {
     const previewServerList = await listPreviewServers()
     if(previewServerList.length === 0) {
         return reply.code(204).send(`There aren't any review servers there!`)
