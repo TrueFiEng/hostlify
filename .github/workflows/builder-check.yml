@@ -2,7 +2,7 @@ name: Node.js Package
 
 on:
   pull_request:
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +16,7 @@ jobs:
       - run: yarn lint
       - name: Deploy
         id: truefipreview
-        uses: ethworks/hostlify-publish@v3.51
+        uses: ethworks/hostlify-publish@v3.63
         with:
           files: ./example
           server-url: truefipreview.io
